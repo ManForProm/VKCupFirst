@@ -32,13 +32,16 @@ var categoryList = listOf<Category>(
 
     )
 
-fun onClickCategoryChoiceCard(index:Int){
-    categoryList[index].isSubscribe.value =
-        sel(categoryList[index].isSubscribe.value != true, true, false)
-}
-fun<T> sel(condition:Boolean, trueValue:T, falseValue:T):T =
-    if(condition) trueValue else falseValue
+data class Category(val name:String, var isSubscribe: MutableState<Boolean>)
 
+fun onClickCategoryChoiceCard(stateButton:MutableState<animationStateButton>, counts:MutableState<Int>){
+    counts.value++
+    if (stateButton.value == animationStateButton.UNCLICKED ||
+        stateButton.value == animationStateButton.FIRSTTIME
+    ) {
+        stateButton.value = animationStateButton.CLICKED
+    } else stateButton.value = animationStateButton.UNCLICKED
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
