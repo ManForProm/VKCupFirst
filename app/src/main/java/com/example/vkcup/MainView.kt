@@ -53,7 +53,6 @@ fun ListCategory(listCategory: List<Category>) {
         items(listCategory.size) { index ->
             CategoryCard(
                 name = listCategory[index].name,
-                index = index,
             )
         }
     }
@@ -61,7 +60,7 @@ fun ListCategory(listCategory: List<Category>) {
 }
 
 @Composable
-fun CategoryCard(name: String, index: Int,) {
+fun CategoryCard(name: String,) {
     val paddingModifier = Modifier.padding(12.dp)
     val stateButton = remember { mutableStateOf(AnimationStateButton.UNCLICKED) }
     val counts = remember { mutableStateOf(0) }
